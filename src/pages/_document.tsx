@@ -21,6 +21,7 @@ export default class _ extends Document {
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
                     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900" />
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.css" />
+                    <link rel="stylesheet" href="/_next/static/style.css" />
                 </Head>
                 <body className="e-fill">
                     <Recoil>

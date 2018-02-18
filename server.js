@@ -9,7 +9,7 @@ const handle = app.getRequestHandler();
 mobxReact.useStaticRendering(true);
 
 app.prepare().then(() => {
-    const server = express()
+    const server = express();
 
     server.get('/about', (req, res) => {
         return app.render(req, res, '/about', req.query)
@@ -25,6 +25,6 @@ app.prepare().then(() => {
 
     server.listen(port, (err) => {
         if (err) throw err
-        console.log(`> Ready on http:// localhost:${port}`)
+        console.log(`> Ready on http:// localhost:${port}`);
     })
 });
