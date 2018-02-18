@@ -3,6 +3,8 @@ import { inject, observer } from 'mobx-react';
 import BaseLayout from '../components/layout/BaseLayout';
 import initializePage from '../utils/initialize';
 
+import Button from '../recoil/src/components/Button/Button';
+
 @inject('authStore')
 @observer
 class Index extends React.Component<any, any>{
@@ -23,9 +25,7 @@ class Index extends React.Component<any, any>{
   render() {
     return (
       <BaseLayout>
-        <div>
-          <button onClick={this.login.bind(this)}>{this.state.authStore.isAuthenticated ? "Log out" : "Logs in"}</button>
-        </div>
+        <Button theme="primary" onClick={this.login.bind(this)}>{this.state.authStore.isAuthenticated ? "Log out" : "Logs in"}</Button>
       </BaseLayout>
     )
   }

@@ -2,6 +2,8 @@ import * as React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
 
+import Recoil from '../recoil/src/components/Recoil/Recoil';
+
 export default class _ extends Document {
     static getInitialProps({ renderPage }) {
         const { html, head, errorHtml, chunks } = renderPage();
@@ -20,8 +22,10 @@ export default class _ extends Document {
                     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900" />
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.css" />
                 </Head>
-                <body className="custom_class">
-                    <Main />
+                <body className="e-fill">
+                    <Recoil>
+                        <Main />
+                    </Recoil>
                     <NextScript />
                 </body>
             </html>
