@@ -1,3 +1,16 @@
 {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.next": true,
+        "**/src/.next/**": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/public": true,
+        "**/recoil": true,
+        "**/node_modules": true,
+        "**/.vscode": true
+    }
 }

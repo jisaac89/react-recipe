@@ -5,18 +5,17 @@ let store = null;
 
 class Store {
     @observable loading: boolean = false;
-    @observable user: Object = {};
+    @observable user: Object = null;
 
-    @action signIn = () => {
+    @action async signIn() {
         this.loading = true;
 
-        setTimeout(() => {
+        await setTimeout(() => {
             this.user = {
                 name: 'joe'
             };
             this.loading = false;
         }, 1000);
-
     }
 
     signOut = () => {
@@ -26,6 +25,7 @@ class Store {
     @computed get isAuthenticated() {
         return !!this.user;
     }
+
 }
 
 export default function getStore() {

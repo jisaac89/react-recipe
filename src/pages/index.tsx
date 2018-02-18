@@ -15,15 +15,15 @@ class Index extends React.Component<any, any>{
   }
 
   login() {
-    console.log(this.state);
-    this.state.authStore.signIn();
-    console.log(this.state.authStore);
+    this.state.authStore.signIn().then(() => {
+      console.log('logged in!')
+    });
   }
 
   render() {
     return (
       <BaseLayout>
-        <button onClick={this.login.bind(this)}>login</button>
+        <button onClick={this.login.bind(this)}>{this.state.authStore.isAuthenticated ? "Log out" : "Log in"}</button>
       </BaseLayout>
     )
   }
