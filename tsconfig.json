@@ -3,9 +3,9 @@
         "outDir": "dist",
         "rootDir": "src",
         "strict": true,
-        "module": "ES2015",
-        "target": "ES2017",
-        "jsx": "react-native",
+        "module": "esnext",
+        "target": "esnext",
+        "jsx": "react",
         "allowJs": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
@@ -18,8 +18,7 @@
         "typeRoots": [
             "./node_modules/@types/",
             "./src/@types/"
-        ],
-        "watch": true
+        ]
     },
     "include": [
         "src"
@@ -27,7 +26,8 @@
     "exclude": [
         "dist",
         ".next",
-        "node_modules"
+        "node_modules",
+        "src/recoil/docs/**"
     ],
-    "compileOnSave": true
+    "compileOnSave": false
 }

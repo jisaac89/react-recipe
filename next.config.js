@@ -3,7 +3,7 @@ const withTypescript = require('@zeit/next-typescript');
 const webpack = require('webpack');
 const withLess = require('@zeit/next-less');
 
-module.exports = withLess(withTypescript({
+module.exports = withTypescript(withLess({
     webpack(config, options) {
         if (config.resolve.alias) {
             delete config.resolve.alias.react;
@@ -18,5 +18,6 @@ module.exports = withLess(withTypescript({
             ]
         })
         return config;
-    }
+    },
+    pageExtenstions: ['jsx', 'js']
 }));
