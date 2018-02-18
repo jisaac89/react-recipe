@@ -1,11 +1,11 @@
 import { observable, computed, action } from 'mobx';
 import Router from 'next/router';
 
-let store = null;
+let store: any | null = null;
 
 class Store {
     @observable loading: boolean = false;
-    @observable user: Object = null;
+    @observable user: Object | null = null;
 
     @action async signIn() {
         this.loading = true;

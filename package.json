@@ -11,22 +11,29 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@zeit/next-less": "^0.1.1",
     "@zeit/next-typescript": "0.0.10",
     "express": "^4.16.2",
+    "less": "^3.0.1",
     "next": "^5.0.0",
     "react": "^16.2.0",
     "typescript": "^2.7.2"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.3",
     "@types/next": "^2.4.8",
     "@types/react": "^16.0.38",
     "@types/react-dom": "^16.0.4",
     "classnames": "^2.2.5",
     "concurrently": "^3.5.1",
+    "css-loader": "^0.28.9",
     "intersection-observer": "^0.5.0",
+    "less-loader": "^4.0.5",
     "mobx": "^3.5.1",
     "mobx-react": "^4.4.2",
     "react-dom": "^16.2.0",
-    "react-intersection-observer": "^3.0.3"
+    "react-intersection-observer": "^3.0.3",
+    "react-recoil": "^0.5.45",
+    "style-loader": "^0.20.2"
   }
 }

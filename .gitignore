@@ -6,6 +6,7 @@ recoil/
 recoil/dist/
 public/bundle/
 src/.next/
+src/recoil/
 dist
 .next
 *.d.ts

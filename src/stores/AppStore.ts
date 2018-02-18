@@ -1,6 +1,6 @@
-import { action, observable } from 'mobx'
+import { action, observable } from 'mobx';
 
-let store = null
+let store: any = null
 
 class Store {
     @observable title: string = 'React Recipe';
