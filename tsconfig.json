@@ -1,27 +1,31 @@
 {
-    "compileOnSave": false,
     "compilerOptions": {
+        "outDir": "dist",
         "target": "esnext",
         "module": "esnext",
-        "jsx": "preserve",
-        "allowJs": true,
         "moduleResolution": "node",
-        "allowSyntheticDefaultImports": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "removeComments": false,
-        "preserveConstEnums": true,
+        "isolatedModules": false,
+        "jsx": "react",
         "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "noImplicitAny": false,
+        "noImplicitUseStrict": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "allowJs": true,
+        "suppressImplicitAnyIndexErrors": true,
         "sourceMap": true,
-        "skipLibCheck": true,
-        "baseUrl": ".",
-        "typeRoots": [
-            "./node_modules/@types"
-        ],
-        "lib": [
-            "dom",
-            "es2015",
-            "es2016"
-        ]
-    }
+        "watch": true
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "src/recoil/docs",
+        "dist"
+    ],
+    "compileOnSave": true,
+    "buildOnSave": true
 }

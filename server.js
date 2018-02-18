@@ -3,7 +3,7 @@ const next = require('next');
 const mobxReact = require('mobx-react');
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dir: './src', dev });
+const app = next({ dir: './dist', dev });
 const handle = app.getRequestHandler();
 
 mobxReact.useStaticRendering(true);

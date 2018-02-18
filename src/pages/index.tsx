@@ -23,7 +23,9 @@ class Index extends React.Component<any, any>{
   render() {
     return (
       <BaseLayout>
-        <button onClick={this.login.bind(this)}>{this.state.authStore.isAuthenticated ? "Log out" : "Log in"}</button>
+        <div>
+          <button onClick={this.login.bind(this)}>{this.state.authStore.isAuthenticated ? "Log out" : "Logs in"}</button>
+        </div>
       </BaseLayout>
     )
   }

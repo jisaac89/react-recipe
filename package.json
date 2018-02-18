@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "build": "next build src"
+    "build": "next build dist"
   },
   "keywords": [],
   "author": "",
@@ -15,14 +15,18 @@
     "express": "^4.16.2",
     "next": "^5.0.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0",
     "typescript": "^2.7.2"
   },
   "devDependencies": {
     "@types/next": "^2.4.8",
     "@types/react": "^16.0.38",
+    "@types/react-dom": "^16.0.4",
+    "classnames": "^2.2.5",
     "concurrently": "^3.5.1",
+    "intersection-observer": "^0.5.0",
     "mobx": "^3.5.1",
-    "mobx-react": "^4.4.2"
+    "mobx-react": "^4.4.2",
+    "react-dom": "^16.2.0",
+    "react-intersection-observer": "^3.0.3"
   }
 }
