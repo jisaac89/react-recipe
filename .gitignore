@@ -5,6 +5,7 @@ typings
 recoil/
 recoil/dist/
 public/bundle/
+src/.next/
 dist
 .next
 *.d.ts
