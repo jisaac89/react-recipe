@@ -1,0 +1,12 @@
+node_modules/
+npm-debug.log
+.DS_Store
+typings
+recoil/
+recoil/dist/
+public/bundle/
+dist
+.next
+*.d.ts
+*.log
+*.tgz
