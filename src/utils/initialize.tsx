@@ -8,7 +8,7 @@ import Recoil from '../recoil/src/components/Recoil/Recoil';
 
 export default function initializePage(UI) {
 
-  return class PageComponent extends React.Component {
+  return class PageComponent extends React.Component<any, any> {
 
     appStore: any;
     authStore: any;
@@ -42,3 +42,4 @@ export default function initializePage(UI) {
     }
   }
 }
+
