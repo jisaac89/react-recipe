@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import BaseLayout from '../components/layout/BaseLayout';
 import initializePage from '../utils/initialize';
 
-import Button from '../recoil/src/components/Button/Button';
+import { Emerge } from '../recoil/src/index';
 
 @inject('authStore')
 @observer
@@ -25,7 +25,9 @@ class Index extends React.Component<any, any>{
   render() {
     return (
       <BaseLayout>
-        <Button theme="primary" onClick={this.login.bind(this)}>{this.state.authStore.isAuthenticated ? "Log out" : "Logs in"}</Button>
+        <Emerge if={true}>
+          <h1 className="super text-center pt20">Welcome to React Recipe</h1>
+        </Emerge>
       </BaseLayout>
     )
   }

@@ -11,6 +11,8 @@ mobxReact.useStaticRendering(true);
 
 app.prepare().then(() => {
     const server = express();
+
+    // render the static files
     const staticDir = path.resolve('./src/.next/static');
     server.use('/_next/static', express.static(staticDir));
 
