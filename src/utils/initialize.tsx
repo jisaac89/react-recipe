@@ -2,6 +2,10 @@ import * as React from 'react';
 import { Provider } from 'mobx-react';
 import { initAppStore, getAuthStore } from '../stores/_GlobalStore';
 
+import "../recoil/src/index.less";
+import "../less/main.less";
+import Recoil from '../recoil/src/components/Recoil/Recoil';
+
 export default function initializePage(UI) {
 
   return class PageComponent extends React.Component {
@@ -30,7 +34,9 @@ export default function initializePage(UI) {
 
       return (
         <Provider {...stores}>
-          <UI />
+          <Recoil className="e-fill" nightmode={true}>
+            <UI />
+          </Recoil>
         </Provider>
       )
     }

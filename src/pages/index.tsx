@@ -5,8 +5,6 @@ import initializePage from '../utils/initialize';
 
 import Button from '../recoil/src/components/Button/Button';
 
-import "../recoil/src/index.less";
-
 @inject('authStore')
 @observer
 class Index extends React.Component<any, any>{

@@ -2,7 +2,6 @@ import * as React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
 
-import Recoil from '../recoil/src/components/Recoil/Recoil';
 
 export default class _ extends Document {
     static getInitialProps({ renderPage }) {
@@ -24,9 +23,7 @@ export default class _ extends Document {
                     <link rel="stylesheet" href="/_next/static/style.css" />
                 </Head>
                 <body className="e-fill">
-                    <Recoil>
-                        <Main />
-                    </Recoil>
+                    <Main />
                     <NextScript />
                 </body>
             </html>

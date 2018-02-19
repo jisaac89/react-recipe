@@ -5,11 +5,14 @@ const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dir: './src', dev });
 const handle = app.getRequestHandler();
+const path = require('path');
 
 mobxReact.useStaticRendering(true);
 
 app.prepare().then(() => {
     const server = express();
+    const staticDir = path.resolve('./src/.next/static');
+    server.use('/_next/static', express.static(staticDir));
 
     server.get('/about', (req, res) => {
         return app.render(req, res, '/about', req.query)

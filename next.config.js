@@ -1,15 +1,18 @@
 const withTypescript = require('@zeit/next-typescript');
-const webpack = require('webpack');
 const withLess = require('@zeit/next-less');
 const withCSS = require('@zeit/next-css');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = withTypescript(withCSS(withLess({
-    webpack(config, options) {
-        if (config.resolve.alias) {
-            delete config.resolve.alias.react;
-            delete config.resolve.alias['react-dom'];
-        }
+module.exports = withCSS(withLess(withTypescript({
+    distDir: '/.next',
+    webpack: (config) => {
+
+        config.plugins.push(new ExtractTextPlugin({
+            filename: '/_next/static/style.css',
+            allChunks: true,
+        }));
+
         return config;
     }
 })));
