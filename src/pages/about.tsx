@@ -6,13 +6,13 @@ import { Emerge, Layer } from '../utils/recoilClient';
 
 @inject('appStore')
 @observer
-class Index extends React.Component<any, any>{
+class Index extends React.Component {
 
   render() {
     return (
       <Default>
         <Layer fill flexCenter>
-          <Emerge if={true}>
+          <Emerge>
             <h1 className="super text-center">About</h1>
           </Emerge>
         </Layer>

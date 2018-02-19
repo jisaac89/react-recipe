@@ -1,3 +1,4 @@
 export interface IAppStore {
-    title?: string;
+    title: string;
+    nightmode?: boolean;
 }

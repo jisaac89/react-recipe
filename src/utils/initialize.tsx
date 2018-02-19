@@ -32,9 +32,11 @@ export default function initializePage(UI) {
         appStore: this.appStore
       }
 
+      let { appStore } = stores;
+
       return (
         <Provider {...stores}>
-          <Recoil className="e-fill">
+          <Recoil nightmode={appStore.nightmode} className="e-fill">
             <UI />
           </Recoil>
         </Provider>

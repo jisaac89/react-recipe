@@ -7,13 +7,13 @@ import { Emerge, Layer, Toolbar, Button } from '../utils/recoilClient';
 
 @inject('appStore')
 @observer
-class Index extends React.Component<any, any>{
+class Index extends React.Component {
 
   render() {
     return (
       <Default>
         <Layer fill flexCenter>
-          <Emerge if={true}>
+          <Emerge>
             <h1 className="super text-center">Welcome to React Recipe</h1>
             <Toolbar spacing>
               <Button simple>Typescript</Button>
@@ -24,7 +24,7 @@ class Index extends React.Component<any, any>{
             </Toolbar>
           </Emerge>
         </Layer>
-      </Default>      
+      </Default>            
     )
   }
 }
