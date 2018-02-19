@@ -34,7 +34,7 @@ export default function initializePage(UI) {
 
       return (
         <Provider {...stores}>
-          <Recoil className="e-fill" nightmode={true}>
+          <Recoil className="e-fill">
             <UI />
           </Recoil>
         </Provider>
