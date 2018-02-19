@@ -8,6 +8,8 @@ git clone https://github.com/jisaac89/react-recipe.git
 
 cd react-recipe
 
+npm install
+
 git clone https://github.com/jisaac89/recoil.git
 
 npm run start:express
