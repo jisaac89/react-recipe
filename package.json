@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:express": "node server.js",
-    "start:next": "next start",
-    "build": "next build src"
+    "start:express": "node server.js"
   },
   "keywords": [],
   "author": "",
