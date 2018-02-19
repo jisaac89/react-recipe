@@ -14,7 +14,7 @@ class Index extends React.Component<any, any>{
       <BaseLayout>
         <Layer fill flexCenter>
           <Emerge if={true}>
-            <h1 className="super text-center pt20">Welcome to React Recipe</h1>
+            <h1 className="super text-center">Welcome to React Recipe</h1>
             <Toolbar spacing>
               <Button simple>Typescript</Button>
               <Button simple>Next</Button>

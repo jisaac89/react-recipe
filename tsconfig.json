@@ -10,6 +10,7 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "removeComments": false,
+        "experimentalDecorators": true,
         "preserveConstEnums": true,
         "sourceMap": true,
         "skipLibCheck": true,

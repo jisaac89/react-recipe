@@ -6,16 +6,21 @@ import "../recoil/src/index.less";
 import "../less/main.less";
 import Recoil from '../recoil/src/components/Recoil/Recoil';
 
+import { IAppStore } from '../_interfaces/stores/IAppStore';
+import { IAuthStore } from '../_interfaces/stores/IAuthStore';
+
+interface IPageComponent { };
+
 export default function initializePage(UI) {
 
-  return class PageComponent extends React.Component<any, any> {
+  return class PageComponent extends React.Component<IPageComponent, any> {
 
-    appStore: any;
-    authStore: any;
+    appStore: IAppStore;
+    authStore: IAuthStore;
 
     static getInitialProps({ req }) {
       const isServer = !!req;
-      const store = initAppStore(isServer);
+      // const store = initAppStore(isServer);
       return { isServer }
     }
 
@@ -42,4 +47,3 @@ export default function initializePage(UI) {
     }
   }
 }
-

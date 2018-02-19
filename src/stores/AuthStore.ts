@@ -1,9 +1,9 @@
 import { observable, computed, action } from 'mobx';
-import Router from 'next/router';
+import { IAuthStore } from '../_interfaces/stores/IAuthStore';
 
-let store: any | null = null;
+let authStore: IAuthStore | null = null;
 
-class Store {
+class AuthStore implements IAuthStore {
     @observable loading: boolean = false;
     @observable user: Object | null = null;
 
@@ -29,8 +29,8 @@ class Store {
 }
 
 export default function getStore() {
-    if (store === null) {
-        store = new Store()
+    if (authStore === null) {
+        authStore = new AuthStore();
     }
-    return store
+    return authStore;
 }
