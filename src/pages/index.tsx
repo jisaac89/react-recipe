@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { inject, observer } from 'mobx-react';
-import BaseLayout from '../components/layout/BaseLayout';
+import { Default } from '../components/layouts/_Layouts'; 
 import initializePage from '../utils/initialize';
 
 import { Emerge, Layer, Toolbar, Button } from '../utils/recoilClient';
 
-@inject('authStore')
+@inject('appStore')
 @observer
 class Index extends React.Component<any, any>{
 
   render() {
     return (
-      <BaseLayout>
+      <Default>
         <Layer fill flexCenter>
           <Emerge if={true}>
             <h1 className="super text-center">Welcome to React Recipe</h1>
@@ -24,7 +24,7 @@ class Index extends React.Component<any, any>{
             </Toolbar>
           </Emerge>
         </Layer>
-      </BaseLayout>
+      </Default>      
     )
   }
 }

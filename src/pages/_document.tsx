@@ -2,7 +2,6 @@ import * as React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
 
-
 export default class _ extends Document {
     static getInitialProps({ renderPage }) {
         const { html, head, errorHtml, chunks } = renderPage();

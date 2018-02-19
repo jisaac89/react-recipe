@@ -1,21 +1,29 @@
-import { action, observable } from 'mobx';
+import { observable } from 'mobx';
+import { IAppStore } from '../_interfaces/stores/IAppStore';
 
-let store: any = null
+let appStore: IAppStore;
 
-class Store {
+class AppStore implements IAppStore {
     @observable title: string = 'React Recipe';
-    constructor(isServer) {
+    constructor(isServer?: boolean) {
 
     }
 }
 
 export default function initAppStore(isServer) {
     if (isServer) {
-        return new Store(isServer)
+        return new AppStore(isServer)
     } else {
-        if (store === null) {
-            store = new Store(isServer)
+        if (appStore === null) {
+            appStore = new AppStore(isServer)
         }
-        return store
+        return appStore;
     }
 }
+
+// export default function getStore() {
+//     if (appStore === null) {
+//         appStore = new AppStore();
+//     }
+//     return appStore;
+// }

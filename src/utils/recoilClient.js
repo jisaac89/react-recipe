@@ -1,9 +1,5 @@
 import dynamic from 'next/dynamic';
 
-// errors known next-typescript issue that will get resolved soon, converted file to js to fix
-// https://github.com/zeit/next.js/issues/3389
-// wherever Recoil lives, we must wrap each import with a dynamic
-
 let defaults = {
     ssr: true,
     loading: () => null

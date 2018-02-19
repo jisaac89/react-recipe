@@ -12,20 +12,20 @@ mobxReact.useStaticRendering(true);
 app.prepare().then(() => {
     const server = express();
 
-    // render the static files
+    // lets express server render next.js static folder
     const staticDir = path.resolve('./src/.next/static');
     server.use('/_next/static', express.static(staticDir));
 
     server.get('/about', (req, res) => {
-        return app.render(req, res, '/about', req.query)
+        return app.render(req, res, '/about', req.query);
     })
 
     server.get('/index', (req, res) => {
-        return app.render(req, res, '/index', req.query)
+        return app.render(req, res, '/index', req.query);
     })
 
     server.get('*', (req, res) => {
-        return handle(req, res)
+        return handle(req, res);
     })
 
     server.listen(port, (err) => {
