@@ -1,5 +1,6 @@
 import { IAppStore } from "../../stores/IAppStore";
 
-export interface IDefault {
+export interface IDefaultProps {
+    centerContent?: boolean;
     appStore?: IAppStore;
 }

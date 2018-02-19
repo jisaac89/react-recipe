@@ -4,7 +4,6 @@ import { initAppStore } from '../stores/_GlobalStore';
 
 import "../recoil/src/index.less";
 import "../less/main.less";
-import Recoil from '../recoil/src/components/Recoil/Recoil';
 
 import { IAppStore } from '../_interfaces/stores/IAppStore';
 
@@ -18,12 +17,13 @@ export default function initializePage(UI) {
 
     static getInitialProps({ req }) {
       const isServer = !!req;
-      return { isServer }
+      const appStoreDefaults = initAppStore(isServer);
+      return { appStoreDefaults, isServer }
     }
 
     constructor(props) {
       super(props);
-      this.appStore = initAppStore(props.isServer);
+      this.appStore = initAppStore(props.isServer, props.appStoreDefaults);
     }
 
     render() {
@@ -32,13 +32,9 @@ export default function initializePage(UI) {
         appStore: this.appStore
       }
 
-      let { appStore } = stores;
-
       return (
         <Provider {...stores}>
-          <Recoil nightmode={appStore.nightmode} className="e-fill">
-            <UI />
-          </Recoil>
+          <UI />
         </Provider>
       )
     }
