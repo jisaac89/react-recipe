@@ -10,7 +10,11 @@ cd react-recipe
 
 npm install
 
+cd src
+
 git clone https://github.com/jisaac89/recoil.git
+
+cd ..
 
 npm run start:express
 
