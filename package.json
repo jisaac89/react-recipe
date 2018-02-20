@@ -17,6 +17,7 @@
     "@zeit/next-less": "^0.1.1",
     "@zeit/next-typescript": "0.0.10",
     "auth0-js": "^9.2.3",
+    "auth0-lock": "^11.2.3",
     "classnames": "^2.2.5",
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.2",
@@ -29,7 +30,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-intersection-observer": "^3.0.3",
-    "typescript": "^2.7.2"
+    "typescript": "^2.7.2",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "js-cookie": "^2.2.0"

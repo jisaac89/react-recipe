@@ -30,10 +30,6 @@ export default function initializePage(UI) {
       this.authStore = getAuthStore();
     }
 
-    componentDidMount() {
-      // init auth on mount
-    }
-
     render() {
 
       const stores = {
