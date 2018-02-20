@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link';
 import { observer, inject } from 'mobx-react';
 import { Button, Toolbar, Dropdown } from '../../utils/recoilClient';
 import { IHeaderProps } from '../../_interfaces/components/navigation/IHeaderProps';
@@ -24,7 +25,7 @@ export default class Header extends React.Component<IHeaderProps, any>{
     render() {
         return (
             <Toolbar block className="border-bottom p10">
-                <Dropdown className="ml5" icon="user" right dropDirection="left"><LogIn /></Dropdown>
+                {this.state.authStore.isLoggedIn ? <Link href="auth/logOut"><Button>Log out</Button></Link> : <Dropdown className="ml5" icon="user" right dropDirection="left"><LogIn /></Dropdown>}
                 <Button onClick={this.toggleNightMode.bind(this)} outline right icon="moon-o">Toggle Nightmode</Button>
             </Toolbar>
         )

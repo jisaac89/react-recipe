@@ -1,23 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { observer, inject } from 'mobx-react';
 import Router from 'next/router'
+import mobXHOC from '../../components/hocs/mobXHOC';
 
-import { setToken, checkSecret, extractInfoFromHash } from '../../utils/auth'
+import { setToken, checkSecret, extractInfoFromHash } from '../../utils/auth';
 
-export default class SignedIn extends React.Component {
-
-  static propTypes = {
-    url: PropTypes.object.isRequired
-  }
+@inject('authStore')
+@observer
+class LoggedIn extends React.Component<any> {
 
   componentDidMount() {
-    const { token, secret } = extractInfoFromHash()
+    const { token, secret } = extractInfoFromHash();
     if (!checkSecret(secret) || !token) {
-      console.error('Something happened with the Sign In request')
+      console.error('Something happened with the Sign In request');
     }
-    setToken(token)
-    Router.push('/')
+    setToken(token);
+    Router.push('/');
   }
 
   render() {
@@ -25,3 +24,5 @@ export default class SignedIn extends React.Component {
   }
 
 };
+
+export default mobXHOC(LoggedIn);
