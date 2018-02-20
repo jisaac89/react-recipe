@@ -24,6 +24,12 @@ app.prepare().then(() => {
         return app.render(req, res, '/index', req.query);
     })
 
+    // server.get('/callback', (req, res) => {
+    //     console.log(req, res);
+    //     res.redirect('/');
+    //     return app.render(req, res, '/index', req.query);
+    // });
+
     server.get('*', (req, res) => {
         return handle(req, res);
     })
