@@ -1,6 +1,8 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
+        "rootDir": "src",
+        "outDir": ".build",
         "target": "esnext",
         "module": "esnext",
         "jsx": "preserve",
@@ -8,7 +10,7 @@
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
         "noUnusedLocals": true,
-        "noUnusedParameters": true,
+        "noUnusedParameters": false,
         "removeComments": false,
         "experimentalDecorators": true,
         "preserveConstEnums": true,
@@ -23,5 +25,13 @@
             "es2015",
             "es2016"
         ]
-    }
+    },
+    "include": [
+        "src",
+        "src/recoil"
+    ],
+    "exclude": [
+        "src/recoil/docs",
+        "src/recoil/webpack.config.js"
+    ]
 }

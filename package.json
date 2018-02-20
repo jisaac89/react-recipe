@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:express": "node server.js"
+    "start:express": "node server.js",
+    "start": "next src",
+    "build": "next build src",
+    "now-build": "now"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +30,7 @@
     "mobx": "^3.5.1",
     "mobx-react": "^4.4.2",
     "next": "^5.0.0",
+    "now-env": "^3.0.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-intersection-observer": "^3.0.3",

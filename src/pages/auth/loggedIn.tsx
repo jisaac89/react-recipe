@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { observer, inject } from 'mobx-react';
 import Router from 'next/router'
 import mobXHOC from '../../components/hocs/mobXHOC';
