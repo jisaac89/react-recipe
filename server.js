@@ -3,7 +3,7 @@ const next = require('next');
 const mobxReact = require('mobx-react');
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dir: './src', dev });
+const app = next({ dev });
 const handle = app.getRequestHandler();
 const path = require('path');
 
@@ -13,7 +13,7 @@ app.prepare().then(() => {
     const server = express();
 
     // lets express server render next.js static folder
-    const staticDir = path.resolve('./src/.next/static');
+    const staticDir = path.resolve('.next/static');
     server.use('/_next/static', express.static(staticDir));
 
     server.get('/about', (req, res) => {

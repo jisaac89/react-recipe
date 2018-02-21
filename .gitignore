@@ -3,6 +3,7 @@ npm-debug.log
 .DS_Store
 typings
 recoil/
+recoil
 recoil/dist/
 public/bundle/
 src/.next/
@@ -12,3 +13,4 @@ dist
 *.d.ts
 *.log
 *.tgz
+tsconfig.json

@@ -6,6 +6,7 @@ recoil/src/**/*.tsx
 recoil/src/**/*.ts
 recoil/docs/
 src/recoil/
+recoil
 recoil/dist/docs/
 public/bundle
 src/.next/

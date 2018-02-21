@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:express": "node server.js",
-    "start": "next src",
-    "build": "next build src",
-    "now-build": "now"
+    "preinstall": "git clone https://www.github.com/jisaac89/recoil.git",
+    "prepublishOnly": "rimraf ./.build && tsc --declaration",
+    "dev": "next",
+    "build": "rimraf ./.next && next build",
+    "start": "next start",
+    "express": "rimraf ./.next && node server.js"
   },
   "keywords": [],
   "author": "",
@@ -35,9 +37,7 @@
     "react-dom": "^16.2.0",
     "react-intersection-observer": "^3.0.3",
     "typescript": "^2.7.2",
-    "uuid": "^3.2.1"
-  },
-  "devDependencies": {
+    "uuid": "^3.2.1",
     "js-cookie": "^2.2.0"
   }
 }
