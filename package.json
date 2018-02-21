@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "clean": "rimraf ./.build && rimraf ./.next && rimraf ./recoil && npm prune && npm install",
     "preinstall": "git clone https://www.github.com/jisaac89/recoil.git",
     "prepublishOnly": "rimraf ./.build && tsc --declaration",
     "dev": "next",
