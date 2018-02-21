@@ -10,8 +10,6 @@ cd react-recipe
 
 npm install
 
-cd ..
-
 npm run express
 
 ````
