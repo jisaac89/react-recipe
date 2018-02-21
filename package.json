@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "clean": "rimraf ./.build && rimraf ./.next && rimraf ./recoil && npm prune && npm install",
-    "preinstall": "git clone https://www.github.com/jisaac89/recoil.git",
+    "preinstall": "rimraf ./recoil && git clone https://www.github.com/jisaac89/recoil.git",
     "prepublishOnly": "rimraf ./.build && tsc --declaration",
     "dev": "next",
     "build": "rimraf ./.next && next build",
