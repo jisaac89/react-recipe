@@ -1,6 +1,20 @@
-language: node_js
-node_js:
- - "node"
-cache:
-  directories:
-    - "node_modules"
+{
+  sudo: "required",
+  addons: {
+    apt: {
+      sources: ["google-chrome"],
+      packages: ["google-chrome-stable"]
+    }
+  },
+  language: "node_js",
+  node_js: ["8"],
+  cache: {
+    directories: ["node_modules"]
+  },
+  before_install: [
+    "npm install rimraf -g"
+  ],
+  {
+    skip_cleanup: true
+  }
+}
