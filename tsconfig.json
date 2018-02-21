@@ -2,8 +2,8 @@
     "compileOnSave": false,
     "compilerOptions": {
         "outDir": ".build",
-        "target": "es6",
-        "module": "es6",
+        "target": "esnext",
+        "module": "esnext",
         "jsx": "preserve",
         "allowJs": true,
         "moduleResolution": "node",
