@@ -1,6 +1,8 @@
-Server-rendered React boilerplate with Next, TypeScript, MobX, Express and Recoil.
+![Alt text](https://image.ibb.co/b6NnOH/react_recipe.jpg "React Recipe")
 
-** Some packages may be missing, the console will let you know which ones =)
+# React Recipe
+
+Server-rendered React boilerplate with Next, TypeScript, MobX, Express and Recoil.
 
 ````
 
