@@ -1,20 +1,24 @@
 import { observable, action } from 'mobx';
 import { IAppStore } from '../_interfaces/stores/IAppStore';
 
-// store initials state must be set to null for client side rendering;
 let appStore: IAppStore = null;
 
 class AppStore implements IAppStore {
 
     @observable title: string = 'React Recipe';
-    @observable nightmode: boolean = false;
+    @observable is_nightmode: boolean = false;
+    @observable is_menuEnabled: boolean = false;
 
     constructor(isServer, lastUpdate?: any) {
-        this.nightmode = lastUpdate ? lastUpdate.nightmode : false;
+        this.is_nightmode = lastUpdate ? lastUpdate.nightmode : false;
     }
 
     @action toggleNightMode() {
-        this.nightmode = !this.nightmode;
+        this.is_nightmode = !this.is_nightmode;
+    }
+
+    @action toggleMenu() {
+        this.is_menuEnabled = !this.is_menuEnabled;
     }
 
 }
@@ -29,10 +33,3 @@ export default function initAppStore(isServer, lastUpdate?: any) {
         return appStore;
     }
 }
-
-// export default function getAppStore() {
-//     if (!appStore) {
-//         appStore = new AppStore();
-//     }
-//     return appStore;
-// }

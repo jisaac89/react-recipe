@@ -1,27 +1,24 @@
 import * as React from 'react';
-import { observer, inject } from 'mobx-react';
-
+import { observer } from 'mobx-react';
 import { Layer } from '../../utils/recoilClient';
 import Header from '../navigation/Header';
-import Recoil from '../../recoil/src/components/Recoil/Recoil';
 import { IDefaultProps } from '../../_interfaces/components/layouts/IDefaultProps';
 
-@inject('appStore')
+import { baseLayout } from '../hocs/baseLayout';
+
 @observer
-export default class Default extends React.Component<IDefaultProps>{
-
+class Default extends React.Component<IDefaultProps>{
     render() {
-        let { centerContent, appStore } = this.props;
-
+        let { centerContent } = this.props;
         return (
-            <Recoil nightmode={appStore.nightmode} className="e-fill">
-                <Layer fill flex>
-                    <Header />
-                    <Layer fill flexCenter={centerContent}>
-                        {this.props.children}
-                    </Layer>
+            <Layer fill flex>
+                <Header />
+                <Layer fill flexCenter={centerContent}>
+                    {this.props.children}
                 </Layer>
-            </Recoil>
+            </Layer>
         );
     }
 }
+
+export default baseLayout()(Default);

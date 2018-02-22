@@ -1,5 +1,6 @@
 export interface IAppStore {
     title: string;
-    nightmode?: boolean;
+    is_nightmode?: boolean;
+    is_menuEnabled?: boolean;
     toggleNightMode(): void;
 }
