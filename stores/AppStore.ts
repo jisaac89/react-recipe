@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx';
 import { IAppStore } from '../_interfaces/stores/IAppStore';
 
-let appStore: IAppStore = null;
+export let appStore: IAppStore = null;
 
 class AppStore implements IAppStore {
 

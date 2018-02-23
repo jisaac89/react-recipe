@@ -21,4 +21,5 @@ class Default extends React.Component<IDefaultProps>{
     }
 }
 
+// every layout must extend base!
 export default baseLayout()(Default);

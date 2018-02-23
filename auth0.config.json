@@ -1,4 +1,6 @@
 {
   "AUTH0_CLIENT_ID": "UtSVwHMRSxkrQmb0DuH7wZ6sU8HrnBTK",
-  "AUTH0_CLIENT_DOMAIN": "recoil.auth0.com"
+  "AUTH0_CLIENT_DOMAIN": "recoil.auth0.com",
+  "domain": "recoil.auth0.com",
+  "clientID": "UtSVwHMRSxkrQmb0DuH7wZ6sU8HrnBTK"
 }

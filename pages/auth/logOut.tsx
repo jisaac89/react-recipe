@@ -5,8 +5,8 @@ import { logout } from '../../utils/lock'
 
 export default class SignOff extends React.Component {
   componentDidMount() {
-    unsetToken()
-    logout()
+    unsetToken();
+    logout();
   }
   render() {
     return null

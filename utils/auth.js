@@ -1,5 +1,8 @@
 import jwtDecode from 'jwt-decode';
 import Cookie from 'js-cookie';
+import auth0 from 'auth0-js';
+
+var webAuth = new auth0.WebAuth(require('../auth0.config.json'));
 
 const getQueryParams = () => {
   const params = {}
@@ -13,7 +16,8 @@ export const extractInfoFromHash = () => {
   if (!process.browser) {
     return undefined
   }
-  const { id_token, state } = getQueryParams()
+  const { id_token, state } = getQueryParams();
+  console.log(getQueryParams());
   return { token: id_token, secret: state }
 };
 
@@ -56,3 +60,47 @@ export const getUserFromLocalCookie = () => {
 export const setSecret = (secret) => Cookie.set('secret', secret);
 
 export const checkSecret = (secret) => Cookie.get('secret') === secret;
+
+
+// 
+
+
+export function isLoggedIn() {
+  const idToken = getIdToken();
+  return !!idToken && !isTokenExpired(idToken);
+}
+
+function getTokenExpirationDate(encodedToken) {
+  const token = decode(encodedToken);
+  if (!token.exp) { return null; }
+
+  const date = new Date(0);
+  date.setUTCSeconds(token.exp);
+
+  return date;
+}
+
+function isTokenExpired(token) {
+  const expirationDate = getTokenExpirationDate(token);
+  return expirationDate < new Date();
+}
+
+export function getUserInfo(cb) {
+  let accessToken = getAccessToken();
+  auth.client.userInfo(accessToken, (error, user) => {
+    return cb(user);
+  });
+}
+
+export function isLoggedInUser(cb, error) {
+  const idToken = getIdToken();
+  const access_token = getAccessToken();
+  if (!!idToken && !isTokenExpired(idToken)) {
+
+    auth.client.userInfo(access_token, (error, user) => {
+      return cb(user);
+    });
+  } else {
+    return error();
+  }
+}
