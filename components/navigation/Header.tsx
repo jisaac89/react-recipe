@@ -1,10 +1,7 @@
 import * as React from 'react';
-import Link from 'next/link';
 import { observer, inject } from 'mobx-react';
-import { Button, Toolbar, Dropdown } from '../../utils/recoilClient';
+import { Button, Toolbar } from '../../utils/recoilClient';
 import { IHeaderProps } from '../../_interfaces/components/navigation/IHeaderProps';
-
-import LogIn from '../../components/navigation/LogIn';
 
 @inject('appStore', 'authStore')
 @observer
@@ -18,9 +15,11 @@ export default class Header extends React.Component<IHeaderProps, any>{
 
         return (
             <Toolbar block className="border-bottom p10">
-                {this.props.authStore.isAuthenticated ? <Button href="auth/logOut">Log out</Button> : <Dropdown className="ml5" icon="user" right dropDirection="left"><LogIn /></Dropdown>}
+                {this.props.authStore.isAuthenticated ? <Button href="auth/logOut">Log out</Button> : <Button href="/login">Login</Button>}
                 <Button onClick={this.toggleNightMode.bind(this)} outline right icon="moon-o">Toggle Nightmode</Button>
             </Toolbar>
         )
     }
 }
+
+{/* <Dropdown className="ml5" icon="user" right dropDirection="left"><LogIn /></Dropdown> */ }

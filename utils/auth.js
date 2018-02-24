@@ -1,106 +1,89 @@
-import jwtDecode from 'jwt-decode';
+import decode from 'jwt-decode';
 import Cookie from 'js-cookie';
 import auth0 from 'auth0-js';
 
-var webAuth = new auth0.WebAuth(require('../auth0.config.json'));
+// var webAuth = new auth0.WebAuth(require('../auth0.config.json'));
 
-const getQueryParams = () => {
-  const params = {}
-  window.location.href.replace(/([^(?|#)=&]+)(=([^&]*))?/g, ($0, $1, $2, $3) => {
-    params[$1] = $3
-  })
-  return params
-};
+let auth = null;
 
-export const extractInfoFromHash = () => {
-  if (!process.browser) {
-    return undefined
+class Auth {
+
+  localStorage = window.localStorage;
+
+  webAuth = new auth0.WebAuth(require('../auth0.config.json'));
+  setAccessToken = () => {
+    let accessToken = this.getCookie('access_token');;
+    localStorage.setItem('access_token', accessToken);
   }
-  const { id_token, state } = getQueryParams();
-  console.log(getQueryParams());
-  return { token: id_token, secret: state }
-};
 
-export const setToken = (token) => {
-  if (!process.browser) {
-    return
+  // Get and store id_token in local storage
+  setIdToken = () => {
+    let idToken = this.getCookie('id_token');;
+    localStorage.setItem('id_token', idToken);
   }
-  Cookie.set('user', jwtDecode(token))
-  Cookie.set('jwt', token)
-};
 
-export const unsetToken = () => {
-  if (!process.browser) {
-    return
-  };
-  Cookie.remove('jwt');
-  Cookie.remove('user');
-  Cookie.remove('secret');
+  getCookie = (name) => {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+  }
 
-  // to support logging out from all windows
-  window.localStorage.setItem('logout', Date.now());
-};
+  isLoggedIn = () => {
+    const idToken = this.getIdToken();
+    return !!idToken && !this.isTokenExpired(idToken);
+  }
 
-export const getUserFromServerCookie = (req) => {
-  if (!req.headers.cookie) {
-    return undefined;
-  };
-  const jwtCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('jwt='))
-  if (!jwtCookie) {
-    return undefined;
-  };
-  const jwt = jwtCookie.split('=')[1]
-  return jwtDecode(jwt);
-};
+  getTokenExpirationDate = (encodedToken) => {
+    const token = decode(encodedToken);
+    if (!token.exp) { return null; }
 
-export const getUserFromLocalCookie = () => {
-  return Cookie.getJSON('user');
-};
+    const date = new Date(0);
+    date.setUTCSeconds(token.exp);
 
-export const setSecret = (secret) => Cookie.set('secret', secret);
+    return date;
+  }
 
-export const checkSecret = (secret) => Cookie.get('secret') === secret;
+  isTokenExpired = (token) => {
+    const expirationDate = this.getTokenExpirationDate(token);
+    return expirationDate < new Date();
+  }
 
-
-// 
-
-
-export function isLoggedIn() {
-  const idToken = getIdToken();
-  return !!idToken && !isTokenExpired(idToken);
-}
-
-function getTokenExpirationDate(encodedToken) {
-  const token = decode(encodedToken);
-  if (!token.exp) { return null; }
-
-  const date = new Date(0);
-  date.setUTCSeconds(token.exp);
-
-  return date;
-}
-
-function isTokenExpired(token) {
-  const expirationDate = getTokenExpirationDate(token);
-  return expirationDate < new Date();
-}
-
-export function getUserInfo(cb) {
-  let accessToken = getAccessToken();
-  auth.client.userInfo(accessToken, (error, user) => {
-    return cb(user);
-  });
-}
-
-export function isLoggedInUser(cb, error) {
-  const idToken = getIdToken();
-  const access_token = getAccessToken();
-  if (!!idToken && !isTokenExpired(idToken)) {
-
-    auth.client.userInfo(access_token, (error, user) => {
+  getUserInfo = (cb) => {
+    let accessToken = this.getAccessToken();
+    this.webAuth.client.userInfo(accessToken, (error, user) => {
       return cb(user);
     });
+  }
+
+  isLoggedInUser = (cb, error) => {
+    const idToken = this.getIdToken();
+    const access_token = this.getAccessToken();
+    if (!!idToken && !this.isTokenExpired(idToken)) {
+
+      this.webAuth.client.userInfo(access_token, (error, user) => {
+        return cb(user);
+      });
+    } else {
+      return error();
+    }
+  }
+
+  getIdToken = () => {
+    return localStorage.getItem('id_token');
+  }
+
+  getAccessToken = () => {
+    return localStorage.getItem('access_token');
+  }
+}
+
+export default function authIt() {
+  if (typeof window === 'undefined') {
+    return null;
   } else {
-    return error();
+    if (auth === null) {
+      auth = new Auth();
+    }
+    return auth;
   }
 }
