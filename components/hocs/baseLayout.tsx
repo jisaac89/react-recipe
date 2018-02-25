@@ -38,7 +38,9 @@ export const baseLayout = () =>
             }
 
             componentDidMount() {
-                this.checkIfUserLoggedIn();
+                if (!this.props.authStore.is_Authenticated) {
+                    this.checkIfUserLoggedIn();
+                }
             }
 
             checkIfUserLoggedIn() {
