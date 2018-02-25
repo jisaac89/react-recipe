@@ -55,7 +55,7 @@ export const baseLayout = () =>
                 auth.isLoggedInUser((user) => {
                     authStore.login(user);
                     // should push to a router store with initial location set;
-                    Router.push('/');
+                    // Router.push('/');
                 }, () => {
                     appStore.loading = false;
                 })

@@ -15,7 +15,7 @@ class Index extends React.Component<IIndexProps> {
         <Emerge>
           <h1 className="super text-center mb10">Welcome to <strong>React Recipe</strong></h1>
           <Toolbar spacing>
-            <Link href={'/about'}><Button>About</Button></Link>
+            <Link prefetch href={'/about'}><Button>About</Button></Link>
           </Toolbar>
         </Emerge>
       </Default>

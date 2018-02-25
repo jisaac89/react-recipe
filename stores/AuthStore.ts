@@ -11,7 +11,6 @@ class AuthStore implements IAuthStore {
 
     login(user: IUser) {
         this.user = user;
-        appStore.is_menuEnabled = true;
     }
 
     async logOut() {
@@ -20,8 +19,8 @@ class AuthStore implements IAuthStore {
         return await true;
     }
 
-    @computed get isAuthenticated() {
-        return !!this.user.name;
+    @computed get is_Authenticated() {
+        return !!this.user && !!this.user.name;
     }
 }
 
