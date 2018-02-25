@@ -80,12 +80,12 @@ app.prepare().then(() => {
             scope: 'openid profile email phone'
         }),
         function (req, res) {
-            return app.render(req, res, '/auth/loggedIn', req.query);
+            return app.render(req, res, '/', req.query);
         }
     );
 
     server.get(
-        '/callback',
+        '/auth/loggedIn',
         passport.authenticate('auth0', {
             failureRedirect: '/errors'
         }), (req, res) => {
@@ -95,7 +95,7 @@ app.prepare().then(() => {
                     res.cookie('access_token', userinfo.extraParams.access_token);
                     res.cookie('id_token', userinfo.extraParams.id_token);
                     res.cookie('user_profile', userinfo.profile);
-                    return app.render(req, res, '/index', req.query);
+                    return app.render(req, res, '/auth/loggedIn', req.query);
                 })
         }
     );

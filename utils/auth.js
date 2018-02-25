@@ -12,13 +12,13 @@ class Auth {
 
   webAuth = new auth0.WebAuth(require('../auth0.config.json'));
   setAccessToken = () => {
-    let accessToken = this.getCookie('access_token');;
+    let accessToken = this.getCookie('access_token');
     localStorage.setItem('access_token', accessToken);
   }
 
   // Get and store id_token in local storage
   setIdToken = () => {
-    let idToken = this.getCookie('id_token');;
+    let idToken = this.getCookie('id_token');
     localStorage.setItem('id_token', idToken);
   }
 
