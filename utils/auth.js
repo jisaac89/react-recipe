@@ -2,8 +2,6 @@ import decode from 'jwt-decode';
 import Cookie from 'js-cookie';
 import auth0 from 'auth0-js';
 
-// var webAuth = new auth0.WebAuth(require('../auth0.config.json'));
-
 let auth = null;
 
 class Auth {
@@ -75,9 +73,16 @@ class Auth {
   getAccessToken = () => {
     return localStorage.getItem('access_token');
   }
+
+  unsetTokens = () => {
+    localStorage.removeItem('acces_token');
+    localStorage.removeItem('id_token');
+    Cookie.remove('access_token');
+    Cookie.remove('id_token');
+  }
 }
 
-export default function authIt() {
+export default function authorize() {
   if (typeof window === 'undefined') {
     return null;
   } else {

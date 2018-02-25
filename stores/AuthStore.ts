@@ -14,6 +14,12 @@ class AuthStore implements IAuthStore {
         appStore.is_menuEnabled = true;
     }
 
+    async logOut() {
+        this.user = {};
+        appStore.is_menuEnabled = false;
+        return await true;
+    }
+
     @computed get isAuthenticated() {
         return !!this.user.name;
     }

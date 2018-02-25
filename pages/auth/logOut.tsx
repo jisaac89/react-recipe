@@ -1,14 +1,22 @@
 import React from 'react'
+import { observer, inject } from 'mobx-react';
+import Router from 'next/router';
+import authorize from '../../utils/auth';
+import mobXHOC from '../../components/hocs/mobXHOC';
 
-import { unsetToken } from '../../utils/auth'
-import { logout } from '../../utils/lock'
-
-export default class SignOff extends React.Component {
+@inject('authStore', 'appStore')
+@observer
+class logOut extends React.Component<any, any> {
   componentDidMount() {
-    unsetToken();
-    logout();
+    authorize().unsetTokens();
+    this.props.authStore.logOut().then(() => {
+      Router.push('/')
+    });
   }
   render() {
     return null
   }
 };
+
+
+export default mobXHOC(logOut);

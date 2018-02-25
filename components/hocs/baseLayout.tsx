@@ -8,7 +8,7 @@ import { Recoil } from '../../utils/recoilClient';
 
 import MenuPane from '../navigation/MenuPane';
 
-import inita from '../../utils/auth';
+import authorize from '../../utils/auth';
 
 // const Auth = dynamic(import('../../utils/auth'), defaults);
 
@@ -45,9 +45,7 @@ export const baseLayout = () =>
                 let context = this;
                 let { appStore, authStore } = context.props;
 
-                let auth = inita();
-
-                console.log(auth);
+                let auth = authorize();
 
                 appStore.loading = true;
 

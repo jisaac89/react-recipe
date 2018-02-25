@@ -95,10 +95,17 @@ app.prepare().then(() => {
                     res.cookie('access_token', userinfo.extraParams.access_token);
                     res.cookie('id_token', userinfo.extraParams.id_token);
                     res.cookie('user_profile', userinfo.profile);
+                    console.log(req.query);
                     return app.render(req, res, '/auth/loggedIn', req.query);
                 })
         }
     );
+
+    server.get('/auth/logOut', (req, res) => {
+        req.logout();
+        // res.redirect('/');
+        return app.render(req, res, '/auth/logOut', req.query);
+    });
 
     server.get('*', (req, res) => {
         return handle(req, res);

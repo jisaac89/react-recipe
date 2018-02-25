@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import Router from 'next/router'
 import mobXHOC from '../../components/hocs/mobXHOC';
 
-import inita from '../../utils/auth';
+import authorize from '../../utils/auth';
 
 @inject('authStore', 'appStore')
 @observer
@@ -12,7 +12,7 @@ class LoggedIn extends React.Component<any> {
   componentDidMount() {
     const { authStore, appStore } = this.props;
 
-    let auth = inita();
+    let auth = authorize();
 
     auth.setAccessToken();
     auth.setIdToken();
