@@ -19,6 +19,7 @@ class LoggedIn extends React.Component<any> {
 
     auth.isLoggedInUser((user) => {
       authStore.login(user);
+      appStore.toggleMenu();
       Router.push('/');
     }, () => {
       appStore.loading = false;

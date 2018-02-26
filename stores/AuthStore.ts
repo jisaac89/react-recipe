@@ -9,6 +9,10 @@ export let authStore: IAuthStore = null;
 class AuthStore implements IAuthStore {
     @observable user: IUser = UserModel;
 
+    constructor(currentUser?: IUser) {
+        this.user = currentUser || {};
+    }
+
     login(user: IUser) {
         this.user = user;
     }
@@ -24,9 +28,11 @@ class AuthStore implements IAuthStore {
     }
 }
 
-export default function getAuthStore() {
+export default function getAuthStore(currentUser?: IUser) {
     if (authStore === null) {
         authStore = new AuthStore();
+    } else if (!!currentUser) {
+        authStore = new AuthStore(currentUser);
     }
     return authStore;
 }

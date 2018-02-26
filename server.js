@@ -108,8 +108,13 @@ app.prepare().then(() => {
     });
 
     server.get('*', (req, res) => {
+        if (!!passport.user) {
+            res.user = user;
+            console.log(res.user);
+        }
         return handle(req, res);
     })
+
 
     server.listen(port, (err) => {
         if (err) throw err

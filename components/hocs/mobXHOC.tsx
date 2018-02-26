@@ -18,16 +18,18 @@ export default function mobXHOC(Layouts) {
     authStore: IAuthStore;
     auth: any;
 
-    static getInitialProps({ req }) {
+    static getInitialProps(req, res) {
       const isServer = !!req;
+      console.log(!!res);
       const appStoreDefaults = initAppStore(isServer);
-      return { appStoreDefaults, isServer }
+      const authStoreDefaults = getAuthStore(req.user);
+      return { appStoreDefaults, authStoreDefaults, isServer }
     }
 
     constructor(props) {
       super(props);
       this.appStore = initAppStore(props.isServer, props.appStoreDefaults);
-      this.authStore = getAuthStore();
+      this.authStore = getAuthStore(props.authStoreDefaults);
     }
 
     render() {

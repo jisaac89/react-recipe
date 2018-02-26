@@ -5,7 +5,7 @@ export let appStore: IAppStore = null;
 
 class AppStore implements IAppStore {
 
-    @observable loading: boolean = false;
+    @observable loading: boolean = true;
     @observable title: string = 'React Recipe';
     @observable is_nightmode: boolean = false;
     @observable is_menuEnabled: boolean = false;

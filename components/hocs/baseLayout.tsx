@@ -7,11 +7,9 @@ import { IAuthStore } from '../../_interfaces/stores/IAuthStore';
 import { Recoil } from '../../utils/recoilClient';
 
 import MenuPane from '../navigation/MenuPane';
-
 import authorize from '../../utils/auth';
 
 // const Auth = dynamic(import('../../utils/auth'), defaults);
-
 
 interface ExternalProps {
     appStore?: IAppStore;
@@ -38,8 +36,11 @@ export const baseLayout = () =>
             }
 
             componentDidMount() {
-                if (!this.props.authStore.is_Authenticated) {
+                let { authStore } = this.props;
+                if (!authStore.is_Authenticated) {
                     this.checkIfUserLoggedIn();
+                } else {
+                    this.props.appStore.loading = false;
                 }
             }
 
@@ -48,8 +49,6 @@ export const baseLayout = () =>
                 let { appStore, authStore } = context.props;
 
                 let auth = authorize();
-
-                appStore.loading = true;
 
                 auth.getAccessToken();
                 auth.getIdToken();
@@ -67,7 +66,7 @@ export const baseLayout = () =>
                 return (
                     <Recoil nightmode={this.props.appStore.is_nightmode}>
                         <Component {...this.props} {...this.state} />
-                        <MenuPane />
+                        {this.props.authStore.is_Authenticated ? <MenuPane /> : null}
                     </Recoil>
                 );
             }
