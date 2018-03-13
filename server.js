@@ -121,15 +121,6 @@ app.prepare().then(() => {
     });
 
     server.get('*', (req, res) => {
-        // if (!!passport.user) {
-        //     res.user = user;
-        //     console.log(res.user);
-        // }
-        // getUserInfo(req).then((userinfo) => {
-        //     console.log(userinfo);
-        // })
-        // console.log(req.session);
-        // console.log(req.user);
         return handle(req, res);
     })
 
