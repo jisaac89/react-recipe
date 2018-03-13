@@ -7,8 +7,8 @@ import { IDefaultProps } from '../../_interfaces/components/layouts/IDefaultProp
 import { baseLayout } from '../hocs/baseLayout';
 
 @observer
-class Default extends React.Component<IDefaultProps>{
-    render() {
+class Default extends React.Component<IDefaultProps, any>{
+    public render() {
         let { centerContent, actions } = this.props;
 
         let actionListArray = [];
