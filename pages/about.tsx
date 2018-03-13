@@ -8,15 +8,14 @@ import { Emerge, Toolbar, Button } from '../utils/recoilClient';
 @inject('appStore')
 @observer
 class Index extends React.Component {
-
   render() {
+
+    let actionsArray = [<Link href={'/'}><Button block>Go Back</Button></Link>];
+
     return (
-      <Default centerContent>
+      <Default centerContent actions={actionsArray}>
         <Emerge>
           <h1 className="super text-center mb10">About</h1>
-          <Toolbar spacing>
-            <Link href={'/'}><Button>Go Back</Button></Link>
-          </Toolbar>
         </Emerge>
       </Default>
     )

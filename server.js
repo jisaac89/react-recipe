@@ -6,6 +6,7 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const path = require('path');
+const session = require('express-session');
 
 // add passport and auth0 settings
 const passport = require('passport');
@@ -42,7 +43,19 @@ async function getUserInfo(req) {
 // prepare and run server
 mobxReact.useStaticRendering(true);
 
+
 app.prepare().then(() => {
+
+    let isAuthenticated = (req, res, next) => {
+        if (req.user)
+            return next();
+        else
+            return res.status(401).json({
+                error: 'User not authenticated'
+            })
+
+    }
+
     const server = express();
 
     passport.use(strategy);
@@ -58,11 +71,11 @@ app.prepare().then(() => {
     // lets express server render next.js static folder
     const staticDir = path.resolve('.next/static');
     server.use('/_next/static', express.static(staticDir));
-
+    server.use(session({ secret: 'anything' }));
     server.use(passport.initialize());
     server.use(passport.session());
 
-    server.get('/about', (req, res) => {
+    server.get('/about', isAuthenticated, (req, res) => {
         return app.render(req, res, '/about', req.query);
     })
 
@@ -77,7 +90,8 @@ app.prepare().then(() => {
             domain: env.AUTH0_DOMAIN,
             redirectUri: env.AUTH0_CALLBACK_URL,
             audience: 'https://recoil.auth0.com/api/v2/',
-            scope: 'openid profile email phone'
+            scope: 'openid profile email phone',
+            session: true
         }),
         function (req, res) {
             return app.render(req, res, '/', req.query);
@@ -87,15 +101,14 @@ app.prepare().then(() => {
     server.get(
         '/auth/loggedIn',
         passport.authenticate('auth0', {
-            failureRedirect: '/errors'
+            failureRedirect: '/errors',
+            session: true
         }), (req, res) => {
             getUserInfo(req)
                 .then(function (userinfo) {
-                    console.log(userinfo.profile._json);
                     res.cookie('access_token', userinfo.extraParams.access_token);
                     res.cookie('id_token', userinfo.extraParams.id_token);
-                    res.cookie('user_profile', userinfo.profile);
-                    console.log(req.query);
+                    res.cookie('user_profile', JSON.stringify(userinfo.profile._json));
                     return app.render(req, res, '/auth/loggedIn', req.query);
                 })
         }
@@ -108,10 +121,15 @@ app.prepare().then(() => {
     });
 
     server.get('*', (req, res) => {
-        if (!!passport.user) {
-            res.user = user;
-            console.log(res.user);
-        }
+        // if (!!passport.user) {
+        //     res.user = user;
+        //     console.log(res.user);
+        // }
+        // getUserInfo(req).then((userinfo) => {
+        //     console.log(userinfo);
+        // })
+        // console.log(req.session);
+        // console.log(req.user);
         return handle(req, res);
     })
 

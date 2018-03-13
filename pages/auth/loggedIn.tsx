@@ -16,13 +16,15 @@ class LoggedIn extends React.Component<any> {
 
     auth.setAccessToken();
     auth.setIdToken();
+    auth.setUserProfile();
 
     auth.isLoggedInUser((user) => {
       authStore.login(user);
       appStore.toggleMenu();
+      appStore.is_loading = false;
       Router.push('/');
     }, () => {
-      appStore.loading = false;
+      appStore.is_loading = false;
     });
 
   }

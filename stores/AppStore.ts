@@ -5,13 +5,13 @@ export let appStore: IAppStore = null;
 
 class AppStore implements IAppStore {
 
-    @observable loading: boolean = true;
     @observable title: string = 'React Recipe';
+    @observable is_loading: boolean = true;
     @observable is_nightmode: boolean = false;
     @observable is_menuEnabled: boolean = false;
 
     constructor(isServer, lastUpdate?: any) {
-        this.is_nightmode = lastUpdate ? lastUpdate.nightmode : false;
+        this.is_nightmode = lastUpdate ? lastUpdate.is_nightmode : false;
     }
 
     @action toggleNightMode() {

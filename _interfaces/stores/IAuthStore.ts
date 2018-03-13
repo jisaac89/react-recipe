@@ -3,5 +3,5 @@ import { IUser } from "../data/IUser";
 export interface IAuthStore {
     user?: IUser;
     login(user?: IUser): void;
-    is_Authenticated: any;
+    is_authenticated?: any;
 }

@@ -9,8 +9,8 @@ export let authStore: IAuthStore = null;
 class AuthStore implements IAuthStore {
     @observable user: IUser = UserModel;
 
-    constructor(currentUser?: IUser) {
-        this.user = currentUser || {};
+    constructor(isServer, lastUpdate?: any) {
+        this.user = lastUpdate ? lastUpdate.user : {};
     }
 
     login(user: IUser) {
@@ -23,16 +23,18 @@ class AuthStore implements IAuthStore {
         return await true;
     }
 
-    @computed get is_Authenticated() {
+    @computed get is_authenticated() {
         return !!this.user && !!this.user.name;
     }
 }
 
-export default function getAuthStore(currentUser?: IUser) {
-    if (authStore === null) {
-        authStore = new AuthStore();
-    } else if (!!currentUser) {
-        authStore = new AuthStore(currentUser);
+export default function getAuthStore(isServer, lastUpdate?: any) {
+    if (isServer && typeof window === 'undefined') {
+        return new AuthStore(isServer, lastUpdate);
+    } else {
+        if (authStore === null) {
+            authStore = new AuthStore(isServer, lastUpdate);
+        }
+        return authStore;
     }
-    return authStore;
 }

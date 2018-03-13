@@ -13,13 +13,13 @@ export default class Header extends React.Component<IHeaderProps, any>{
 
     render() {
         let { authStore } = this.props;
-        let { user, is_Authenticated } = authStore;
+        let { user, is_authenticated } = authStore;
 
         return (
             <Toolbar block className="border-bottom p10">
-                {is_Authenticated ? <Button simple right href="auth/logOut">Log out</Button> : <Button simple right href="/login">Login</Button>}
+                {is_authenticated ? <Button simple right href="auth/logOut">Log out</Button> : <Button simple right href="/login">Login</Button>}
                 <Button onClick={this.toggleNightMode.bind(this)} simple right icon="moon-o"></Button>
-                {is_Authenticated ?
+                {is_authenticated ?
                     <div className="profile-picture border-all mr10">
                         <img height="25" width="25" src={user.picture} />
                     </div> : null}

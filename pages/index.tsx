@@ -10,16 +10,17 @@ import { IIndexProps } from '_interfaces/pages/IIndexProps';
 @observer
 class Index extends React.Component<IIndexProps> {
   componentWillUnmount() {
-    this.props.appStore.is_menuEnabled = false;
+    if (this.props.authStore.is_authenticated) {
+      this.props.appStore.is_menuEnabled = true;
+    }
   }
   render() {
+    let actionsArray = [<Link prefetch href={'/about'}><Button block>About</Button></Link>];
+
     return (
-      <Default centerContent={true}>
+      <Default centerContent={true} actions={actionsArray}>
         <Emerge>
           <h1 className="super text-center mb10">Welcome to <strong>React Recipe</strong></h1>
-          <Toolbar spacing>
-            <Link prefetch href={'/about'}><Button>About</Button></Link>
-          </Toolbar>
         </Emerge>
       </Default>
     )

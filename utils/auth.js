@@ -20,6 +20,12 @@ class Auth {
     localStorage.setItem('id_token', idToken);
   }
 
+  // Get and store id_token in local storage
+  setUserProfile = () => {
+    let user_profile = this.getCookie('user_profile');
+    localStorage.setItem('user_profile', user_profile);
+  }
+
   getCookie = (name) => {
     var value = "; " + document.cookie;
     var parts = value.split("; " + name + "=");
@@ -56,8 +62,7 @@ class Auth {
   isLoggedInUser = (cb, error) => {
     const idToken = this.getIdToken();
     const access_token = this.getAccessToken();
-    if (!!idToken && !this.isTokenExpired(idToken)) {
-
+    if (!!access_token && !!idToken && !this.isTokenExpired(idToken)) {
       this.webAuth.client.userInfo(access_token, (error, user) => {
         return cb(user);
       });
@@ -66,6 +71,19 @@ class Auth {
     }
   }
 
+  isLogUser() {
+    return new Promise((resolve, reject) => {
+      const idToken = this.getIdToken();
+      const access_token = this.getAccessToken();
+      this.webAuth.client.userInfo(access_token, (err, user) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(user);
+        }
+      });
+    });
+  }
   getIdToken = () => {
     return localStorage.getItem('id_token');
   }
@@ -79,6 +97,10 @@ class Auth {
     localStorage.removeItem('id_token');
     Cookie.remove('access_token');
     Cookie.remove('id_token');
+  }
+
+  getUserProfile() {
+    return localStorage.getItem('user_profile');
   }
 }
 
