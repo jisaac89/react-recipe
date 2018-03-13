@@ -31,12 +31,11 @@ export default class MenuPane extends React.Component<any, any>{
 
                             <Toolbar vertical spacing className="mt20 w300px">
                                 {Router.pathname !== '/' ? <Button block onClick={this.toggleMenu.bind(this)}>Toggle Menu</Button> : null}
-                                <Link prefetch href={'/about'}><Button block>About</Button></Link>
+                                <Link prefetch href={'/about'}><Button icon="plus" block>About</Button></Link>
                             </Toolbar>
                         </Emerge>
                     </Layer>
                     <Layer theme="e-NightMode">
-                        <hr />
                         <Toolbar textCenter block vertical spacing className="p10 border-top">
                             <Button block href="/auth/logOut">Sign Out</Button>
                         </Toolbar>

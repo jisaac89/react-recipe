@@ -10,11 +10,12 @@ import { Emerge, Toolbar, Button } from '../utils/recoilClient';
 class Index extends React.Component {
   render() {
 
-    let actionsArray = [<Link href={'/'}><Button block>Go Back</Button></Link>];
+    let actionsArray = [<Link key="back" href={'/'}><Button block>Go Back</Button></Link>];
 
     return (
       <Default centerContent actions={actionsArray}>
         <Emerge>
+          <i className="fa fa-plus"></i>
           <h1 className="super text-center mb10">About</h1>
         </Emerge>
       </Default>

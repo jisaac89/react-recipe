@@ -15,12 +15,12 @@ class Index extends React.Component<IIndexProps> {
     }
   }
   render() {
-    let actionsArray = [<Link prefetch href={'/about'}><Button block>About</Button></Link>];
+    let actionsArray = [<Link key="about" prefetch href={'/about'}><Button block>About</Button></Link>];
 
     return (
       <Default centerContent={true} actions={actionsArray}>
         <Emerge>
-          <h1 className="super text-center mb10">Welcome to <strong>React Recipe</strong></h1>
+          <h1 className="super text-center mb10">React<strong> Recipe</strong></h1>
         </Emerge>
       </Default>
     )
